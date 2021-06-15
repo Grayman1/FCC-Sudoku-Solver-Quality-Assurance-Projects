@@ -9,7 +9,7 @@ const { puzzlesAndSolutions } = require('../controllers/puzzle-strings');
 suite('UnitTests', () => {
   suite('Puzzle String tests', () => {
 // Unit Test #1-Logic handles a valid puzzle string of 81 characters
-    test('Valid Puzzle string of 81 characters', (done) => {
+    test('#1 - Valid Puzzle string of 81 characters', (done) => {
       let validPuzzle = puzzlesAndSolutions[0][0];
       let completePuzzle = puzzlesAndSolutions[0][1];
       assert.equal(solver.solve(validPuzzle), completePuzzle);

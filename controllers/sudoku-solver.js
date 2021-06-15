@@ -25,21 +25,9 @@ class SudokuSolver {
       case 'I':
         return 9;
       default:
-        return: 'none';
+        return 'none';
     }
   }
-
-/*    
-    if (!puzzleString)
-      return {valid : false, error: "Required field missing"};
-    else if (puzzleString.length != 81)
-      return {valid: false , error: 'Expected puzzle to be 81 characters long' };
-    else if (/[^\d\.]/.test(puzzleString))
-      return { valid : false, error: 'Invalid characters in puzzle' };
-    else
-      return { success: 'Validation completed' };
-  }
-*/
 
   checkRowPlacement(puzzleString, row, column, value) {
     // Creating substring of row
@@ -78,19 +66,9 @@ class SudokuSolver {
         if (grid[i + startRow][j + startCol] == value) return false;
     return true;
   }
-    /*
-    for (let i = 0; i < 3; i++)
-      for (let j = 0; j < 3; j++) {
-        // Creating index for tile of region
-        let currentIndex = 9 * (3 * Math.floor(row / 3) + i) + (3 * Math.floor(column / 3) + j);
-        if (puzzleString[currentIndex] == value && (row % 3 != i || column % 3 != j))
-          return false;
-      }
-    return true;
+ 
 
-  } */
-
-  solveSoduku(grid, row, col) {
+  solveSudoku(grid, row, col) {
     
     if (row == 9 - 1 && col == 9) return grid;
     

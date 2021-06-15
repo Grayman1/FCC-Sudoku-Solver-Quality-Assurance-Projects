@@ -15,44 +15,97 @@ suite('UnitTests', () => {
       assert.equal(solver.solve(validPuzzle), completePuzzle);
       done();
 
-  })
+    })
 
 
 
 // Unit Test #2-Logic handles a puzzle string with invalid characters (not 1-9 or .)
+    test('#2 - Logic handles a puzzle string with invalid characters (not 1-9 or .)' , (done) => {
+      let invalidPuzzle = '1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..1j....926914.37.';
+      assert.equal(solver.solve(invalidPuzzle), false);
+      done();
+    });
 
 // Unit Test #3-Logic handles a puzzle string that is not 81 characters in length
+    test('#3-Logic handles a puzzle string that is not 81 characters in length', (done) => {
 
+      let invalidPuzzle = '1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1.16....926914.37.';
+      assert.equal(solver.solve(invalidPuzzle), false);
+      done();
 
-
-
-
+    });
 
   });
 
   suite('check placement', () => {
 
   // Unit Test #4-Logic handles a valid row placement
+    test('#4-Logic handles a valid row placement', (done) => {
+      let validPuzzle = puzzlesAndSolutions[0][0];
+      assert.equal(solver.checkRowPlacement(validPuzzle, 'A', '2', 9), true);
+      done();
+    });
+
 
   // Unit Test #5-Logic handles an invalid row placement
+/*    test('', (done) => {
 
+      
+    })
+    */
   // Unit Test #6-Logic handles a valid column placement
+  /*
+    test('', (done) => {
 
+      
+    })
+    */
   // Unit Test #7-Logic handles an invalid column placement
+  /*
+    test('', (done) => {
 
+      
+    })
+    */
   // Unit Test #8-Logic handles a valid region (3x3 grid) placement
+  /*
+    test('', (done) => {
 
+      
+    })
+    */
   // Unit Test #9-Logic handles an invalid region (3x3 grid) placement
+  /*
+      test('', (done) => {
+
+      
+    })
+    */
   });
 
   suite('solving tests', ()=> {
 
 // Unit Test #10-Valid puzzle strings pass the solver
+/*
+    test('', (done) => {
 
+      
+    })
+    */
 // Unit Test #11-Invalid puzzle strings fail the solver
+/*
+    test('', (done) => {
 
+      
+    })
+    */
 // Unit Test #12-Solver returns the the expected solution for an incomplete puzzle
+/*
+    test('', (done) => {
 
+      
+    })
+    */
   });
 
 });

@@ -30,6 +30,25 @@ class SudokuSolver {
   }
 
   checkRowPlacement(puzzleString, row, column, value) {
+    let grid = this.transform(puzzleString);
+    row = this.letterToNumber(row);
+    if (grid[row - 1][column - 1] == value) {
+      return true;
+    }
+
+    if (grid[row - 1][column - 1] !== 0) {
+      return false;
+    }
+
+    for (let i = 0; i < 9; i++) {
+      if (grid[row - 1][i] == value) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+/*
     // Creating substring of row
     const rowString = puzzleString.slice(row * 9, (row + 1) * 9);
     for (let i in rowString)
@@ -37,7 +56,7 @@ class SudokuSolver {
         return false;
     return true;
   }
-
+*/
 
   checkColPlacement(puzzleString, row, column, value) {
     for (let i = 0; i < 9; i++)

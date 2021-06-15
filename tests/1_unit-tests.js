@@ -48,25 +48,29 @@ suite('UnitTests', () => {
 
 
   // Unit Test #5-Logic handles an invalid row placement
-/*    test('', (done) => {
-
-      
-    })
-    */
+    test('#5-Logic handles an invalid row placement', (done) => {
+      let validPuzzle = puzzlesAndSolutions[0][1];
+      assert.equal(solver.checkRowPlacement(validPuzzle, 'A', '2', 1), false);
+      done();
+    });
+   
   // Unit Test #6-Logic handles a valid column placement
-  /*
-    test('', (done) => {
-
-      
-    })
-    */
+  
+    test('#6-Logic handles a valid column placement', (done) => {
+      let validPuzzle = puzzlesAndSolutions[0][0];
+      assert.equal(solver.checkColPlacement(validPuzzle, 'A', '2', 9), true);
+      done();      
+    });
+    
   // Unit Test #7-Logic handles an invalid column placement
-  /*
-    test('', (done) => {
-
+  
+    test('#7-Logic handles an invalid column placement', (done) => {
+      let validPuzzle = puzzlesAndSolutions[0][1];
+      assert.equal(solver.checkColPlacement(validPuzzle, 'A', '2', 8), false);
+      done();  
       
     })
-    */
+    
   // Unit Test #8-Logic handles a valid region (3x3 grid) placement
   /*
     test('', (done) => {

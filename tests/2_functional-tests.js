@@ -14,38 +14,52 @@ suite('Functional Tests', () => {
  
 //Functional Test #1-Solve a puzzle with valid puzzle string: POST request to /api/solve
   test('#1-Solve a puzzle with valid puzzle string: POST request to /api/solve', (done) => {
-   chai.request(server)
+   chai
+    .request(server)
     .post('/api/solve')
     .send({puzzle: validPuzzle})
     .end((err, res) => {        
       assert.equal(res.status, 200);
+      assert.isObject(res.body);
+      assert.property(res.body, 'solution');
       let solvedPuzzle = puzzlesAndSolutions[1][1];
-      assert.equal(res.body.solution, solvedPuzzle);
-      
+      assert.equal(res.body.solution, solvedPuzzle);    
       done();
     })
-
   })
-
-
 
 //Functional Test #2-Solve a puzzle with missing puzzle string: POST request to /api/solve
-/*
-  test('', (done) => {
 
-    
+  test('#2-Solve a puzzle with missing puzzle string: POST request to /api/solve', (done) => {
+    chai
+      .request(server)
+      .post('/api/solve')
+      .send({})
+      .end((err, res) => {
+        assert.equal(res.status, 200);
+        assert.equal(res.body.error, "Required field(s) missing");
+        done();
+      })    
   })
-*/
-
-
-
 //Functional Test #3-Solve a puzzle with invalid characters: POST request to /api/solve
-/*
-  test('', (done) => {
 
+  test('#3-Solve a puzzle with invalid characters: POST request to /api/solve', (done) => {
+    chai
+    .request(server)
+    .post('/api/solve')
+    .send({puzzle: validPuzzle.replace(9,'a')})
+    .end((err, res) => {        
+      assert.equal(res.status, 200);
+      assert.isObject(res.body);
+      assert.property(res.body, 'error');
+      let solvedPuzzle = puzzlesAndSolutions[1][1];
+   //   assert.equal(res.body.solution, solvedPuzzle);
+      assert.equal(res.body.error, 'Invalid characters in puzzle');    
+      done();
+    })
     
   })
-*/
+
 
 
 //Functional Test #4-Solve a puzzle with incorrect length: POST request to /api/solve

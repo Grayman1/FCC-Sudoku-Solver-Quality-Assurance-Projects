@@ -1,6 +1,7 @@
   
 class SudokuSolver {
 
+  // valiation tests in api.js
   validate(puzzleString) {
   }
 
@@ -117,7 +118,7 @@ class SudokuSolver {
       col = 0;
     }
 
-    if (grid[row][col] != 0) return this.solveSudoku(grid, row, col + 1)
+    if (grid[row][col] != 0) return this.solveSudoku(grid, row, col + 1);
 
     for (let num = 1; num < 10; num++) {
       if (this.isSafe(grid, row, col, num)) {

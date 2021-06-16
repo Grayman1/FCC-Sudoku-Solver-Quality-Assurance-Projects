@@ -36,20 +36,29 @@ module.exports = function (app) {
       }
 
       // Check placement
-      const conflicts = [];
+      
       // validCol check
-      const colCheck = solver.checkColPlacement(puzzleString, row, column, value);
+      const colCheck = solver.checkColPlacement(puzzle, row, column, value);
       // validRow check
-      const rowCheck = solver.checkRowPlacement(puzzleString, row, column, value);
+      const rowCheck = solver.checkRowPlacement(puzzle, row, column, value);
       // validReg check
-      const regionCheck = solver.checkRegionPlacement(puzzleString, row, column, value);
-
-      if (!rowCheck.valid) conflicts.push('row');
-      if (!colCheck.valid) conflicts.push('column');
-      if (!regionCheck.valid) conflicts.push('region');
-
-      if (conflicts.length >= 1) return res.json({valid: false, conflict: conflicts});
-      return res.json({valid: true});
+      const regionCheck = solver.checkRegionPlacement(puzzle, row, column, value);
+      
+      const conflicts = [];
+      if (colCheck && rowCheck && regionCheck) {
+        return res.json({valid: true});
+      } else {
+        if (!rowCheck) {
+          conflicts.push('row');
+        }
+        if (!colCheck) {
+          conflicts.push('column');
+        }
+        if (!regionCheck) {
+          conflicts.push('region');
+        }
+        return res.json({valid: false, conflict: conflicts});
+      }     
     });
     
   app.route('/api/solve')
@@ -57,7 +66,7 @@ module.exports = function (app) {
       const {puzzle} = req.body;
 
       if (!puzzle) {
-        return res.json({error: 'Required field missing'})
+        return res.json({error: 'Required field(s) missing'})
       }
 
       if (puzzle.length != 81) {
@@ -65,15 +74,15 @@ module.exports = function (app) {
       }
 
       if (/[^0-9.]/g.test(puzzle)) {
-        return res.json({error: 'Invalid characters in puzzle'})
+        return res.json({error: 'Invalid characters in puzzle'});
       }
 
       let solvedString = solver.solve(puzzle);
       if (!solvedString) {
-        res.json({error: 'Puzzle cannot be solved'})
+        res.json({error: 'Puzzle cannot be solved'});
       }
       else {
-        res.json({solution: solvedString})
+        res.json({solution: solvedString});
       }
 
     });

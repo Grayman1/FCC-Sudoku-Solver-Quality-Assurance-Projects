@@ -63,21 +63,37 @@ suite('Functional Tests', () => {
 
 
 //Functional Test #4-Solve a puzzle with incorrect length: POST request to /api/solve
-/*
-  test('', (done) => {
 
-    
+  test('#4-Solve a puzzle with incorrect length: POST request to /api/solv', (done) => {
+    chai
+    .request(server)
+    .post('/api/solve')
+    .send({puzzle: validPuzzle.slice(77)})
+    .end((err, res) => {        
+      assert.equal(res.status, 200);
+      assert.isObject(res.body);
+      assert.property(res.body, 'error');
+       assert.equal(res.body.error, 'Expected puzzle to be 81 characters long');    
+      done();
+    })    
   })
-*/
 
 
 //Functional Test #5-Solve a puzzle that cannot be solved: POST request to /api/solve
-/*
-  test('', (done) => {
 
-    
+  test('#5-Solve a puzzle that cannot be solved: POST request to /api/solve', (done) => {
+    chai
+    .request(server)
+    .post('/api/solve')
+    .send({puzzle: '828.4..6...16..89...98315.749.157.............53..4...96.415..81..7632..3...28.51'})
+    .end((err, res) => {        
+      assert.equal(res.status, 200);
+      assert.isObject(res.body);
+      assert.property(res.body, 'error');
+       assert.equal(res.body.error, 'Puzzle cannot be solved');    
+      done();
+    })        
   })
-*/
 
 //Functional Test #6-Check a puzzle placement with all fields: POST request to /api/check
 /*

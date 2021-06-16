@@ -10,7 +10,6 @@ let validPuzzle = puzzlesAndSolutions[1][0];
 
 suite('Functional Tests', () => {
 
-
  
 //Functional Test #1-Solve a puzzle with valid puzzle string: POST request to /api/solve
   test('#1-Solve a puzzle with valid puzzle string: POST request to /api/solve', (done) => {
@@ -56,11 +55,8 @@ suite('Functional Tests', () => {
    //   assert.equal(res.body.solution, solvedPuzzle);
       assert.equal(res.body.error, 'Invalid characters in puzzle');    
       done();
-    })
-    
+    })    
   })
-
-
 
 //Functional Test #4-Solve a puzzle with incorrect length: POST request to /api/solve
 
@@ -96,24 +92,42 @@ suite('Functional Tests', () => {
   })
 
 //Functional Test #6-Check a puzzle placement with all fields: POST request to /api/check
-/*
-  test('', (done) => {
 
-    
+  test('#6-Check a puzzle placement with all fields: POST request to /api/check', (done) => {
+    chai
+      .request(server)
+      .post('/api/check')
+      .send({puzzle: validPuzzle, coordinate: 'A4', value: '9'})
+      .end((err, res) => {        
+        assert.equal(res.status, 200);
+        assert.isObject(res.body);
+      //  assert.property(res.body, 'error');
+        assert.equal(res.body.valid, true);    
+        done();    
+      })
   })
-*/
+
 
 //Functional Test #7-Check a puzzle placement with single placement conflict: POST request to /api/check
-/*
-  test('', (done) => {
 
-    
+  test('#7-Check a puzzle placement with single placement conflict: POST request to /api/check', (done) => {
+    chai
+      .request(server)
+        .post('/api/check')
+        .send({puzzle: validPuzzle, coordinate: 'B2', value: '2'})
+        .end((err, res) => {        
+          assert.equal(res.status, 200);
+          assert.isObject(res.body);
+          assert.equal(res.body.valid, false);  
+          assert.equal(res.body.conflict.length, 1);  
+          done();    
+        })    
   })
-*/
+
 
 //Functional Test #8-Check a puzzle placement with multiple placement conflicts: POST request to /api/check
 /*
-  test('', (done) => {
+  test('#8-Check a puzzle placement with multiple placement conflicts: POST request to /api/check', (done) => {
 
     
   })
@@ -121,7 +135,7 @@ suite('Functional Tests', () => {
 
 //Functional Test #9-Check a puzzle placement with all placement conflicts: POST request to /api/check
 /*
-  test('', (done) => {
+  test('#9-Check a puzzle placement with all placement conflicts: POST request to /api/check', (done) => {
 
     
   })
@@ -129,9 +143,16 @@ suite('Functional Tests', () => {
 
 //Functional Test #10-Check a puzzle placement with missing required fields: POST request to /api/check
 
-//Functional Test #11-Check a puzzle placement with invalid characters: POST request to /api/check
 /*
   test('', (done) => {
+
+    
+  })
+*/
+
+//Functional Test #11-Check a puzzle placement with invalid characters: POST request to /api/check
+/*
+  test('#10-Check a puzzle placement with missing required fields: POST request to /api/check', (done) => {
 
       
     })

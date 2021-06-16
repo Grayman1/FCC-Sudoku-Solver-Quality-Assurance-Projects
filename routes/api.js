@@ -8,10 +8,10 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
-      const {puzzleString, coordinate, value} = req.body;
+      const {puzzle, coordinate, value} = req.body;
 
   // Validate coordinate and value
-      if (!puzzleString || !value || !coordinate) {
+      if (!puzzle || !value || !coordinate) {
           return res.json({error: "Required field(s) missing"})
       }
 
@@ -27,11 +27,11 @@ module.exports = function (app) {
           return res.json({error: "Invalid value"});
       }
 
-      if (puzzleString.length != 81) {
+      if (puzzle.length != 81) {
         return res.json({error: 'Expected puzzle to be 81 characters long'});
       }
 
-      if (/[^0-9.]/g.test(puzzleString)) {
+      if (/[^0-9.]/g.test(puzzle)) {
         return res.json({error: 'Invalid characters in puzzle'});
       }
 
@@ -54,9 +54,9 @@ module.exports = function (app) {
     
   app.route('/api/solve')
     .post((req, res) => {
-      const {puzzleString} = req.body;
+      const {puzzle} = req.body;
 
-      if (!puzzleString) {
+      if (!puzzle) {
         return res.json({error: 'Required field missing'})
       }
 
@@ -64,11 +64,11 @@ module.exports = function (app) {
         return res.json({error: 'Expected puzzle to be 81 characters long'});
       }
 
-      if (/[^0-9.]/g.test(puzzleString)) {
+      if (/[^0-9.]/g.test(puzzle)) {
         return res.json({error: 'Invalid characters in puzzle'})
       }
 
-      let solvedString = solver.solve(puzzleString);
+      let solvedString = solver.solve(puzzle);
       if (!solvedString) {
         res.json({error: 'Puzzle cannot be solved'})
       }

@@ -139,25 +139,51 @@ suite('UnitTests', () => {
 
       assert.equal(solver.solve(puzzlesAndSolutions[4][0]), puzzlesAndSolutions[4][1]);
       assert.isDefined(solver.solve(puzzlesAndSolutions[4][0]));
-
-      done();
-      
+      done();      
     })
     
 // Unit Test #11-Invalid puzzle strings fail the solver
-/*
-    test('', (done) => {
 
+    test('#11-Invalid puzzle strings fail the solver', (done) => {
+      let invalidPuzzle1 = '155..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.';
+      assert.isFalse(solver.solve(invalidPuzzle1));
+      assert.equal(solver.solve(invalidPuzzle1), false);
+      let invalidPuzzle2 = '1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..166...926914.37.';
+      assert.isFalse(solver.solve(invalidPuzzle2));
+      assert.equal(solver.solve(invalidPuzzle2), false);
+      done();
       
     })
-    */
+
 // Unit Test #12-Solver returns the the expected solution for an incomplete puzzle
-/*
-    test('', (done) => {
 
+    test('#12-Solver returns the the expected solution for an incomplete puzzle', (done) => {
+      let outputString = solver.solve(puzzlesAndSolutions[1][0]);
+      let solutionString = puzzlesAndSolutions[1][1];
+      assert.equal(outputString, solutionString)
+     // assert.isNull(errorMessage)
+
+      done();
+      /*
+      let puzzleString = puzzlesAndSolutions[0][0]
+      let solutionString = puzzlesAndSolutions[0][1]
+      let errorMessage = null
+      let solution
+      try {
+          solver.build(puzzleString)
+          solution = solver.solve()
+          if (!solution) throw new Error('Puzzle cannot be solved')
+      } catch (error) {
+          errorMessage = error.message
+      }
+      assert.equal(solution, solutionString)
+      assert.isNull(errorMessage)
+
+      done();
+      */
       
     })
-    */
+ 
   });
 
 });

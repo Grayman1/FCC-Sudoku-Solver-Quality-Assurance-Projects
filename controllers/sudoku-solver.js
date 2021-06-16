@@ -59,12 +59,33 @@ class SudokuSolver {
 */
 
   checkColPlacement(puzzleString, row, column, value) {
+    let grid = this.transform(puzzleString);
+    row = this.letterToNumber(row);
+    if (grid[row - 1][column - 1] == value) {
+      return true;
+    }
+
+    if (grid[row - 1][column - 1] !== 0) {
+      return false;
+    }
+
+    for (let i = 0; i < 9; i++) {
+      if (grid[i][column - 1] == value) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  /*
+  {
     for (let i = 0; i < 9; i++)
       if (puzzleString[9 * i + column] == value && i != row)
         return false;
     return true;
 
   }
+  */
 
   checkRegionPlacement(puzzleString, row, column, value) {
     let grid = this.transform(puzzleString);

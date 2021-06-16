@@ -96,23 +96,54 @@ suite('UnitTests', () => {
     })
     
   // Unit Test #9-Logic handles an invalid region (3x3 grid) placement
-  /*
-      test('', (done) => {
+  
+      test('#9-Logic handles an invalid region (3x3 grid) placement', (done) => {
+        //  Test 9A - Passes
+      const output = solver.checkRegionPlacement(puzzlesAndSolutions[0][0], 'I', '7', 2);
+      assert.equal(output, false);
+ 
+    // Test 98
+      const output2 = solver.checkRegionPlacement(puzzlesAndSolutions[0][0], 'G', '6', 4);
+      assert.equal(output2, false);
+    
+      // Test 9C
+      const output3 = solver.checkRegionPlacement(puzzlesAndSolutions[0][0], 'C', '3', 6);
+      assert.equal(output3, false);
 
-      
-    })
-    */
+      // Test 9D
+      const output4 = solver.checkRegionPlacement(puzzlesAndSolutions[0][0], 'B', '2', 6);
+      assert.equal(output4, false);
+
+      // Test 9E
+      const output5 = solver.checkRegionPlacement(puzzlesAndSolutions[0][0], 'A', '2', 1);
+      assert.equal(output5, false);
+    //  assert.isTrue(output.valid);
+      done();      
+    })    
   });
 
   suite('solving tests', ()=> {
 
 // Unit Test #10-Valid puzzle strings pass the solver
-/*
-    test('', (done) => {
 
+    test('#10-Valid puzzle strings pass the solver', (done) => {
+      assert.equal(solver.solve(puzzlesAndSolutions[0][0]), puzzlesAndSolutions[0][1]);
+      assert.isDefined(solver.solve(puzzlesAndSolutions[0][0]));
+
+      assert.equal(solver.solve(puzzlesAndSolutions[1][0]), puzzlesAndSolutions[1][1]);
+      assert.isDefined(solver.solve(puzzlesAndSolutions[1][0]));
+
+      assert.equal(solver.solve(puzzlesAndSolutions[2][0]), puzzlesAndSolutions[2][1]);
+    
+      assert.equal(solver.solve(puzzlesAndSolutions[3][0]), puzzlesAndSolutions[3][1]);
+
+      assert.equal(solver.solve(puzzlesAndSolutions[4][0]), puzzlesAndSolutions[4][1]);
+      assert.isDefined(solver.solve(puzzlesAndSolutions[4][0]));
+
+      done();
       
     })
-    */
+    
 // Unit Test #11-Invalid puzzle strings fail the solver
 /*
     test('', (done) => {

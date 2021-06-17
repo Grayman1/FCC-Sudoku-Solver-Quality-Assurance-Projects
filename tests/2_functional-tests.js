@@ -126,20 +126,46 @@ suite('Functional Tests', () => {
 
 
 //Functional Test #8-Check a puzzle placement with multiple placement conflicts: POST request to /api/check
-/*
-  test('#8-Check a puzzle placement with multiple placement conflicts: POST request to /api/check', (done) => {
 
-    
+  test('#8-Check a puzzle placement with multiple placement conflicts: POST request to /api/check', (done) => {
+    chai
+      .request(server)
+        .post('/api/check')
+        .send({puzzle: validPuzzle, coordinate: 'B2', value: '3'})
+        .end((err, res) => {        
+          assert.equal(res.status, 200);
+          assert.isObject(res.body);
+          assert.property(res.body, 'valid');
+          assert.equal(res.body.valid, false);
+          assert.isArray(res.body.conflict);
+          assert.isAbove(res.body.conflict.length, 1);
+          assert.equal(res.body.conflict.length, 2);  
+          done();    
+        })    
   })
-*/
+
 
 //Functional Test #9-Check a puzzle placement with all placement conflicts: POST request to /api/check
-/*
+
   test('#9-Check a puzzle placement with all placement conflicts: POST request to /api/check', (done) => {
+    chai
+      .request(server)
+        .post('/api/check')
+        .send({puzzle: validPuzzle, coordinate: 'B2', value: '5'})
+        .end((err, res) => {        
+          assert.equal(res.status, 200);
+          assert.isObject(res.body);
+          assert.property(res.body, 'valid');
+          assert.equal(res.body.valid, false);
+          assert.isArray(res.body.conflict);
+          assert.isAbove(res.body.conflict.length, 1);
+          assert.equal(res.body.conflict.length, 3);  
+          done();    
+        })    
 
     
   })
-*/
+
 
 //Functional Test #10-Check a puzzle placement with missing required fields: POST request to /api/check
 

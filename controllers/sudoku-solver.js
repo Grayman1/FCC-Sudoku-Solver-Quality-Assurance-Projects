@@ -49,16 +49,6 @@ class SudokuSolver {
     return true;
   }
 
-/*
-    // Creating substring of row
-    const rowString = puzzleString.slice(row * 9, (row + 1) * 9);
-    for (let i in rowString)
-      if (rowString[i] == value && i != column)
-        return false;
-    return true;
-  }
-*/
-
   checkColPlacement(puzzleString, row, column, value) {
     let grid = this.transform(puzzleString);
     row = this.letterToNumber(row);
@@ -78,15 +68,6 @@ class SudokuSolver {
     return true;
   }
   
-  /*
-  {
-    for (let i = 0; i < 9; i++)
-      if (puzzleString[9 * i + column] == value && i != row)
-        return false;
-    return true;
-
-  }
-  */
 
   checkRegionPlacement(puzzleString, row, column, value) {
     let grid = this.transform(puzzleString);
@@ -109,6 +90,8 @@ class SudokuSolver {
   }
  
 
+// Sudoku solver backtracking refernce:
+// https://www.geeksforgeeks.org/sudoku-backtracking-7/
   solveSudoku(grid, row, col) {
     
     if (row == 9 - 1 && col == 9) return grid;

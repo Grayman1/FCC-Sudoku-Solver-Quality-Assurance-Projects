@@ -18,7 +18,6 @@ suite('UnitTests', () => {
     })
 
 
-
 // Unit Test #2-Logic handles a puzzle string with invalid characters (not 1-9 or .)
     test('#2 - Logic handles a puzzle string with invalid characters (not 1-9 or .)' , (done) => {
       let invalidPuzzle = '1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..1j....926914.37.';

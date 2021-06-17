@@ -23,9 +23,10 @@ module.exports = function (app) {
         return res.json({error: 'Invalid coordinate'});
       }
 
-      if (value < 1 || value > 9) {
-          return res.json({error: "Invalid value"});
-      }
+      if (!Number.isInteger(parseInt(value)) || value < 1 || value > 9) {
+   //   if (!/[1-9]/i.test(value)) {
+          res.json({error: "Invalid value"});
+      } 
 
       if (puzzle.length != 81) {
         return res.json({error: 'Expected puzzle to be 81 characters long'});
@@ -66,7 +67,7 @@ module.exports = function (app) {
       const {puzzle} = req.body;
 
       if (!puzzle) {
-        return res.json({error: 'Required field(s) missing'})
+        return res.json({error: 'Required field missing'})
       }
 
       if (puzzle.length != 81) {

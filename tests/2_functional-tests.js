@@ -36,7 +36,7 @@ suite('Functional Tests', () => {
       .send({})
       .end((err, res) => {
         assert.equal(res.status, 200);
-        assert.equal(res.body.error, "Required field(s) missing");
+        assert.equal(res.body.error, "Required field missing");
         done();
       })    
   })
@@ -185,8 +185,6 @@ suite('Functional Tests', () => {
           assert.equal(res.body.error, "Required field(s) missing");  
           done();    
         })    
-
-    
   })
 
 
@@ -225,26 +223,46 @@ suite('Functional Tests', () => {
       //    assert.isAbove(res.body.conflict.length, 1);
           assert.equal(res.body.error, "Expected puzzle to be 81 characters long");  
           done();    
-        })   
-    
+        })    
   })
-
 
 
 //Functional Test #13-Check a puzzle placement with invalid placement coordinate: POST request to /api/check
-/*
-  test('', (done) => {
 
-    
+  test('#13-Check a puzzle placement with invalid placement coordinate: POST request to /api/check', (done) => {
+    chai
+      .request(server)
+        .post('/api/check')
+        .send({puzzle: validPuzzle, coordinate: 'J2', value: '1'})
+        .end((err, res) => {        
+          assert.equal(res.status, 200);
+          assert.isObject(res.body);
+          assert.property(res.body, 'error');
+    //      assert.equal(res.body.valid, false);
+    //      assert.isArray(res.body.conflict);
+      //    assert.isAbove(res.body.conflict.length, 1);
+          assert.equal(res.body.error, "Invalid coordinate");  
+          done();    
+        })    
   })
-*/
+
+
 //Functional Test #14-Check a puzzle placement with invalid placement value: POST request to /api/check
-/*
-  test('', (done) => {
 
+  test('#14-Check a puzzle placement with invalid placement value: POST request to /api/check', (done) => {
+    chai
+      .request(server)
+      .post('/api/check')
+      .send({puzzle: validPuzzle, coordinate: 'B2', value: '11'})
+      .end((err, res) => {        
+        assert.equal(res.status, 200);
+        assert.isObject(res.body);
+        assert.equal(res.body.error, "Invalid value");  
+        done();    
+      })   
     
   })
-*/
+
 
 
 

@@ -91,7 +91,7 @@ class SudokuSolver {
  
 
 // Sudoku solver backtracking refernce:
-// https://www.geeksforgeeks.org/sudoku-backtracking-7/
+
   solveSudoku(grid, row, col) {
     
     if (row == 9 - 1 && col == 9) return grid;
